@@ -80,8 +80,13 @@ def Reads_Chemkin_Format(input_file):
 	
 def Returns_Temperature(input_file):
 	Temperat = 0.0
+	temp = ""
 	line = linecache.getline(input_file,2)
-	print line
+	i = 17
+	while line[i] != '\n':
+		temp = temp + line[i]
+		i += 1
+	Temperat = float(temp)
 	return Temperat
 
 
