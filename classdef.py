@@ -33,7 +33,7 @@ class Specie():
 	def __init__(self):
 		self.enthalpy = 0.0  # kJ/kmole
 		self.entropy = 0.0  # kJ/kmole
-		self.gibbs_energy = 0.0  #kJ/kmole
+		self.gibbs_energy = 0.0  # kJ/kmole
 
 	def prints_all(self):
 		print "\n" + self.name,

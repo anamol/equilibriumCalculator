@@ -89,6 +89,41 @@ def Returns_Temperature(input_file):
 	Temperat = float(temp)
 	return Temperat
 
+def Returns_Pressure(input_file):
+	Press = 0.0
+	temp = ""
+	line = linecache.getline(input_file,3)
+	i = 17
+	while line[i] != '\n':
+		temp = temp + line[i]
+		i += 1
+	Press = float(temp)
+	return Press
+
+def Returns_b_Matrix(input_file):
+	nitrogen = 0.0
+	oxygen = 0.0
+	carbon = 0.0
+	hydrogen = 0.0
+	kmoles = 0.0
+	b_Matrix = []
+	reactants_check = False
+
+	for line in input_file:
+		if line == 'REACTANTS\n':
+			reactants_check = True
+		if line == '$\n':
+			break
+		if reactants_check == True and len(line) >= 50 :
+			kmoles = float(line[56:67:])
+			nitrogen += kmoles * float(line[10 : 13])
+			hydrogen += kmoles * float(line[22 : 25])
+			oxygen += kmoles * float(line[34 : 37])
+			carbon += kmoles * float(line[46 : 49])
+	b_Matrix = [nitrogen, hydrogen, oxygen, carbon]
+	return b_Matrix
+
+
 
 
 

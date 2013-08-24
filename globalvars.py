@@ -8,3 +8,4 @@ R = 1.986   # kcal / (K * kmole)  --> This is the Universal Gas Constant.
 N = 1.0 # kmoles --> This is the total number of kmoles in the system at equilibrium. Initially just a guess.
 NS = 0 # total numbber of species in the system
 NE = 4 # total number of elements in the system
+b_Matrix = []
