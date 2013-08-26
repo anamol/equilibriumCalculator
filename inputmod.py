@@ -9,7 +9,7 @@ class InputModule():
 		self.system = system
 	
 	def ReadInput(self):
-		with open(filename, "r") as InputFile:
+		with open(self.filename, "r") as InputFile:
 			self.system.globalvariable.Temperature = self.__GetTemperature()
 			self.system.globalvariable.Pressure = self.__GetPressure()
 			self.system.b_Matrix = self.__GetbMatrix(InputFile)
@@ -71,8 +71,8 @@ class InputModule():
 				break					
 
 			if line[-2] == '1' and thermo_check == True:
-				system.globalvariable.NS += 1  # increments number of species every time it finds '1' at the end of a line
-				current_specie = classdef.Specie()
+				self.system.globalvariable.NS += 1  # increments number of species every time it finds '1' at the end of a line
+				current_specie = classdef.Specie(self.system.globalvariable)
 				
 				for i in line:						# 
 					if i != ' ':					#  
@@ -80,7 +80,7 @@ class InputModule():
 					elif i == ' ':					#
 						break						#
 				if current_specie.name == 'AR':		#  Skips Argon cause it stays Argon
-					systmem.globalvariable.NS -= 1 				#
+					self.system.globalvariable.NS -= 1 				#
 					continue						#
 				
 				for i in range(48, 54):	 # magic numbers	#
@@ -127,8 +127,9 @@ class InputModule():
 				all_species.append(current_specie)						#  Appends current_specie to a list of objects, all_species
 				all_constants.append(list_of_constants)					#  Appends list_of_constants to a list, all_constants
 
-		for i in range(0,globalvariable.NS):									#  Adds constants from all_constants to high_constants and 
+		for i in range(0,self.system.globalvariable.NS):									#  Adds constants from all_constants to high_constants and 
 			all_species[i].high_constants = tuple(all_constants[i][:7])		#  low_constants for each specie in all_species
 			all_species[i].low_constants = tuple(all_constants[i][7:14])	#
 
+		self.system.AllSpecies = all_species
 		return all_species

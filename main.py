@@ -11,8 +11,12 @@ import sys
 
 a_Matrix = SystemFunctions.Returns_a_Matrix(all_species)"""
 
-globalvariable = globalvars.GlobalVariable()
-system = system.System(globalvariable)
+environmentvariable = globalvars.GlobalVariable()
+system = system.System(environmentvariable)
 inputmodule = inputmod.InputModule(sys.argv[1], system)
+
+inputmodule.ReadInput()
+system.CalculateEquilibrium()
+
 
 
