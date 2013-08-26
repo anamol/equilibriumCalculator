@@ -89,3 +89,7 @@ class Specie():
 		self.calculates_enthalpy_difference()
 		self.gibbs_energy = self.enthalpy - globalvars.Temperature * self.entropy + globalvars.R * globalvars.kcal_to_kJ * globalvars.Temperature * (log(self.Nj/globalvars.N) + log(globalvars.Pressure/globalvars.Patm))
 		return self.gibbs_energy
+
+
+
+
