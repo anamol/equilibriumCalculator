@@ -1,6 +1,6 @@
 """ Defines all global variables used"""
 
-class GlobalVariable():
+class Environment():
 	Temperature = 298.0  # Kelvin --> Final temperature at equilibrium. Given.
 	Pressure = 101.325   # kPa --> Final pressure at equilibrium. Given.
 	Patm = 101.325 # kPa --> atmospheric pressure. MUST BE IN SAME UNITS AS PRESSURE.

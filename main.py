@@ -11,7 +11,7 @@ import sys
 
 a_Matrix = SystemFunctions.Returns_a_Matrix(all_species)"""
 
-environmentvariable = globalvars.GlobalVariable()
+environmentvariable = globalvars.Environment()
 system = system.System(environmentvariable)
 inputmodule = inputmod.InputModule(sys.argv[1], system)
 
