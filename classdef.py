@@ -54,17 +54,17 @@ class Specie():
 
 	def calculates_enthalpy_difference(self):
 		if (self.globalvariable.Temperature >= self.lower_limit and self.globalvariable.Temperature <= self.middle_limit):
-			self.enthalpy = self.low_constants[5] * self.globalvariable.R
+			self.enthalpy = self.low_constants[5]
 			for i in range(5):
-				self.enthalpy = self.enthalpy + (self.low_constants[i] * self.globalvariable.R * (self.globalvariable.Temperature ** (i + 1)))/(i + 1)
-			self.enthalpy = self.enthalpy * self.globalvariable.kcal_to_kJ  # converts from kcal/kmole to kJ/kmole	
+				self.enthalpy = self.enthalpy + (self.low_constants[i] * (self.globalvariable.Temperature ** (i + 1)))/(i + 1)
+			self.enthalpy = self.enthalpy * self.globalvariable.kcal_to_kJ * self.globalvariable.R  	
 			return self.enthalpy	
 
 		elif (self.globalvariable.Temperature > self.middle_limit and self.globalvariable.Temperature <= self.higher_limit):
-			self.enthalpy = self.high_constants[5] * self.globalvariable.Temperature * self.globalvariable.R
+			self.enthalpy = self.high_constants[5] 
 			for i in range(5):
-				self.enthalpy = self.enthalpy + (self.high_constants[i] * self.globalvariable.R * (self.globalvariable.Temperature ** (i + 1)))/(i + 1)
-			self.enthalpy = self.enthalpy * self.globalvariable.kcal_to_kJ     # converts from kcal/kmole to kJ/kmole	
+				self.enthalpy = self.enthalpy + (self.high_constants[i] * (self.globalvariable.Temperature ** (i + 1)))/(i + 1)
+			self.enthalpy = self.enthalpy * self.globalvariable.kcal_to_kJ * self.globalvariable.R    	
 			return self.enthalpy	
 
 		else :
@@ -72,17 +72,17 @@ class Specie():
 
 	def calculates_entropy(self):
 		if (self.globalvariable.Temperature >= self.lower_limit and self.globalvariable.Temperature <= self.middle_limit):
-			self.entropy = self.low_constants[0] * self.globalvariable.R * log(self.globalvariable.Temperature) + self.low_constants[6] * self.globalvariable.R
+			self.entropy = self.low_constants[0] * log(self.globalvariable.Temperature) + self.low_constants[6]
 			for i in range(1, 5):
 				self.entropy = self.entropy + (self.low_constants[i] * (self.globalvariable.Temperature ** i))/i
-			self.entropy = self.entropy * self.globalvariable.kcal_to_kJ  # converts from kcal/(K * kmole) to kJ/(K * kmole)
+			self.entropy = self.entropy * self.globalvariable.kcal_to_kJ * self.globalvariable.R # converts from kcal/(K * kmole) to kJ/(K * kmole)
 			return self.entropy
 
 		elif (self.globalvariable.Temperature > self.middle_limit and self.globalvariable.Temperature <= self.higher_limit):
-			self.entropy = self.high_constants[0] * self.globalvariable.R * log(self.globalvariable.Temperature) + self.high_constants[6] * self.globalvariable.R
+			self.entropy = self.high_constants[0] * log(self.globalvariable.Temperature) + self.high_constants[6]
 			for i in range(1, 5):
 				self.entropy = self.entropy + (self.high_constants[i] * (self.globalvariable.Temperature ** i))/i
-			self.entropy = self.entropy * self.globalvariable.kcal_to_kJ   # converts from kcal/(K * kmole) to kJ/(K * kmole)
+			self.entropy = self.entropy * self.globalvariable.kcal_to_kJ * self.globalvariable.R  # converts from kcal/(K * kmole) to kJ/(K * kmole)
 			return self.entropy
 
 		else :

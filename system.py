@@ -17,8 +17,6 @@ class System():
 	def CalculateEquilibrium(self):
 		self.aMatrix = self.__CalculateaMatrix()
 		self.__CalculateEntropyEnthalpyGibbsE()
-		for i in self.AllSpecies:
-			i.prints_all()
 		
 
 	def __CalculateaMatrix(self):
