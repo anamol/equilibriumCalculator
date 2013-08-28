@@ -12,7 +12,7 @@ class InputModule():
 		with open(self.filename, "r") as InputFile:
 			self.system.env.Temperature = self.__GetTemperature()
 			self.system.env.Pressure = self.__GetPressure()
-			self.system.b_Matrix = self.__GetbMatrix(InputFile)
+			self.system.bMatrix = self.__GetbMatrix(InputFile)
 			self.system.AllSpecies = self.__ReadChemkinFormat(InputFile)
 
 	def __GetTemperature(self):
@@ -54,8 +54,8 @@ class InputModule():
 				hydrogen += kmoles * float(line[22 : 25])
 				oxygen += kmoles * float(line[34 : 37])
 				carbon += kmoles * float(line[46 : 49])
-		self.system.b_Matrix = [nitrogen, hydrogen, oxygen, carbon]
-		return self.system.b_Matrix
+		self.system.bMatrix = [nitrogen, hydrogen, oxygen, carbon]
+		return self.system.bMatrix
 
 	def __ReadChemkinFormat(self, InputFile):
 		all_species = []

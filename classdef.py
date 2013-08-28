@@ -1,4 +1,5 @@
 import globalvars
+import sys
 from math import log
 
 
@@ -23,7 +24,7 @@ class Specie():
 	nitrogen = 0
 	hydrogen = 0
 	oxygen = 0
-	Nj = 0.1 # --> Number of kmoles of Specie at equilibrium. Initially just a guess.
+	Nj = 0.01 # --> Number of kmoles of Specie at equilibrium. Initially just a guess.
 	high_constants = tuple([0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0])
 	low_constants = tuple([0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0])
 	lower_limit = 200.0  # Kelvin
@@ -69,6 +70,7 @@ class Specie():
 
 		else :
 			print "Temperature out of range. Try again with Temperature between " + str(self.lower_limit) + " and " + str(self.higher_limit)
+			sys.exit()
 
 	def calculates_entropy(self):
 		if (self.env.Temperature >= self.lower_limit and self.env.Temperature <= self.middle_limit):
@@ -87,11 +89,12 @@ class Specie():
 
 		else :
 			print "Temperature out of range. Try again with Temperature between " + str(self.lower_limit) + " and " + str(self.higher_limit)
+			sys.exit()
 
 	def calculates_gibbs_energy(self):
 		self.calculates_entropy()
 		self.calculates_enthalpy_difference()
-		self.gibbs_energy = self.enthalpy - self.env.Temperature * self.entropy + self.env.R * self.env.kcal_to_kJ * self.env.Temperature * (log(self.Nj/self.env.N) + log(self.env.Pressure/self.env.Patm))
+		self.gibbs_energy = self.enthalpy - self.env.Temperature * self.entropy + self.env.R * self.env.kcal_to_kJ * self.env.Temperature * (log(self.Nj/self.env.TotalN) + log(self.env.Pressure/self.env.Patm))
 		return self.gibbs_energy
 
 
