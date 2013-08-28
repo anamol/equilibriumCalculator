@@ -1,4 +1,4 @@
-import globalvars
+import environment
 import matrix
 import math
 

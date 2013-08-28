@@ -1,4 +1,4 @@
-import globalvars
+import environment
 import system
 import classdef
 
@@ -17,7 +17,8 @@ class OutputModule():
 			OutputFile.write('Species at equilibrium :' + '\n\n')
 			OutputFile.write('Species' + "\t\t" + "Kmoles" + "\t\t\t" + "Mole Fraction" + "\n")
 			for i in range(self.system.env.NS):
-				OutputFile.write(self.system.AllSpecies[i].name + '\t\t' + str("%.4e" % self.system.N[i]) + "\t\t" + str("%.4e" % self.system.MoleFraction[i]) + "\n")
+				if self.system.MoleFraction[i] >= 0.0001:
+					OutputFile.write(self.system.AllSpecies[i].name + '\t\t' + str("%.4e" % self.system.N[i]) + "\t\t" + str("%.4e" % self.system.MoleFraction[i]) + "\n")
 			
 
 	def __SpecificSpecies(self):
@@ -27,5 +28,6 @@ class OutputModule():
 		elif YorN.lower() == 'y':
 			String = raw_input('Enter species, space delimited: \n')
 			counter = 0
+
 
 

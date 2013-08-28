@@ -1,4 +1,4 @@
-import globalvars
+import environment
 import sys
 from math import log
 

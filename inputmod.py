@@ -1,4 +1,4 @@
-import globalvars
+import environment
 import system
 import linecache
 import classdef
