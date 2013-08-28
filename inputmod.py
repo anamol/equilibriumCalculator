@@ -127,7 +127,7 @@ class InputModule():
 				all_species.append(current_specie)						#  Appends current_specie to a list of objects, all_species
 				all_constants.append(list_of_constants)					#  Appends list_of_constants to a list, all_constants
 
-		for i in range(0,self.system.env.NS):									#  Adds constants from all_constants to high_constants and 
+		for i in range(0,self.system.env.NS):								#  Adds constants from all_constants to high_constants and 
 			all_species[i].high_constants = tuple(all_constants[i][:7])		#  low_constants for each specie in all_species
 			all_species[i].low_constants = tuple(all_constants[i][7:14])	#
 

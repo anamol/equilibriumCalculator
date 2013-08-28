@@ -15,16 +15,20 @@ class System():
 	NewN = []
 	NewTotalN = 0.0
 	N = []
+	MoleFraction = []
+	MassFraction = []
 	UnderRelaxParameter = 0.0
 	diff = 1.0
+	Iterations = 0
+	MinimumDiff = 10**(-8)
 
 	def __init__(self, env):
 		self.env = env
 
 	def CalculateEquilibrium(self):
-		self.N = [(0.011) for x in xrange(self.env.NS)]
+		self.N = [(self.env.TotalN/self.env.NS + 0.001) for x in xrange(self.env.NS)]
 		self.aMatrix = self.__CalculateaMatrix()
-		while abs(self.diff) > (10**(-8)):
+		while abs(self.diff) > self.MinimumDiff:
 			for i in range(self.env.NS):
 				self.AllSpecies[i].Nj = self.N[i]
 			self.__CalculateEntropyEnthalpyGibbsE()
@@ -36,7 +40,9 @@ class System():
 			self.NewN = self.__CalculateNewN()
 			self.diff = self.NewTotalN - self.env.TotalN
 			self.N = self.NewN
-			self.env.TotalN = self.NewTotalN	
+			self.env.TotalN = self.NewTotalN
+			self.Iterations += 1
+		self.MoleFraction = self.__CalculateMoleFraction()	
 
 	def __CalculateaMatrix(self):
 		self.aMatrix = [[0.0 for x in xrange(self.env.NS)] for x in xrange(4)]
@@ -121,6 +127,12 @@ class System():
 			self.NewN[i] = math.exp(self.UnderRelaxParameter * self.DeltaNj[i] + math.log(self.N[i]))
 		self.NewTotalN = math.exp(self.UnderRelaxParameter * self.DeltaN + math.log(self.env.TotalN))
 		return self.NewN
+
+	def __CalculateMoleFraction(self):
+		self.MoleFraction = [self.N[x]/self.env.TotalN for x in xrange(self.env.NS)]
+		return self.MoleFraction
+
+
 
 
 

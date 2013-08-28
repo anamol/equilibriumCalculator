@@ -1,11 +1,11 @@
 PARAMETERS
-Temperature(K) = 2600.0
+Temperature(K) = 2300.0
 Pressure(kPa)  = 506.625
 \\
 REACTANTS
-NH3	    N   1.      H   3.      O   0.      C   0.      1.00000E+00
-O2 	    N   0.      H   0.      O   2.      C   0.      1.00000E-01
-CO2     N   0.      H   0.      O   2.      C   1.      1.00000E-05
+CH4	    N   0.      H   4.      O   0.      C   1.      1.00000E+00
+O2 	    N   0.      H   0.      O   2.      C   0.      4.00000E+00
+N2      N   2.      H   0.      O   0.      C   0.      1.50400E+01
 $
 THERMO
 O                 L 1/90O   1               G   200.000  3500.000  1000.000    1
